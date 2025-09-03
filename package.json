@@ -3,8 +3,16 @@
   "displayName": "Terminal Focus Hook",
   "description": "Run a script or send text when the active terminal changes (focus/activation).",
   "publisher": "58b56d2d-dd1b-63c3-88e1-e9b05c548869",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drewsth/vscode-terminal-focus-hook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/drewsth/vscode-terminal-focus-hook/issues"
+  },
+  "homepage": "https://github.com/drewsth/vscode-terminal-focus-hook#readme",
   "engines": {
     "vscode": "^1.88.0"
   },
