@@ -1,0 +1,7 @@
+{
+  "terminalFocusHook.enabled": true,
+  "terminalFocusHook.logLevel": "debug",
+  "terminalFocusHook.scriptPath": "$HOME\\Set-CtmEnv.ps1",
+  "terminalFocusHook.sendText": "",
+  "terminalFocusHook.matchTerminalName": "^CTM AAPI"
+}

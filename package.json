@@ -1,0 +1,87 @@
+{
+  "name": "terminal-focus-hook",
+  "displayName": "Terminal Focus Hook",
+  "description": "Run a script or send text when the active terminal changes (focus/activation).",
+  "publisher": "58b56d2d-dd1b-63c3-88e1-e9b05c548869",
+  "version": "0.1.0",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.88.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:terminalFocusHook.runNow"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "terminalFocusHook.runNow",
+        "title": "Terminal Focus Hook: Run Hook Now (Active Terminal)"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Terminal Focus Hook",
+      "properties": {
+        "terminalFocusHook.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable the focus hook."
+        },
+        "terminalFocusHook.scriptPath": {
+          "type": "string",
+          "default": "$HOME\\\\Set-CtmEnv.ps1",
+          "markdownDescription": "Path to a script to run when a terminal becomes active. Defaults to `$HOME\\Set-CtmEnv.ps1`. If the script is a PowerShell `.ps1`, it's invoked via `pwsh` (falling back to Windows PowerShell). The extension will also extract the text in the last parentheses of the terminal name (e.g. `CTM AAPI (hor-143)` => `hor-143`) and pass it as the first argument."
+        },
+        "terminalFocusHook.sendText": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Instead of an external script, send this text into the activated terminal (press Enter automatically). Leave blank to skip."
+        },
+        "terminalFocusHook.matchTerminalName": {
+          "type": "string",
+          "default": "^CTM AAPI",
+          "markdownDescription": "Optional JavaScript RegExp (without slashes), e.g. ^CTM AAPI or CTM|API. Only run when the activated terminal's name matches."
+        },
+        "terminalFocusHook.debounceMs": {
+          "type": "number",
+          "default": 400,
+          "minimum": 0,
+          "description": "Minimum time between runs per terminal name to avoid double triggering during rapid UI changes."
+        },
+        "terminalFocusHook.runOnStartupActive": {
+          "type": "boolean",
+          "default": false,
+          "description": "Also run for the terminal that is already active when the extension loads."
+        },
+        "terminalFocusHook.logLevel": {
+          "type": "string",
+          "enum": [
+            "off",
+            "info",
+            "debug"
+          ],
+          "default": "info",
+          "description": "Controls output channel verbosity."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -w -p .",
+    "package": "vsce package",
+    "lint": "echo lint"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/vscode": "^1.88.0",
+    "typescript": "^5.6.2",
+    "vsce": "^2.15.0"
+  },
+  "icon": "icon.png"
+}
