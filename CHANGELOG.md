@@ -1,3 +1,6 @@
+### Version 0.1.2
+- Smaller corrections within README
+
 ### Version 0.1.1
 - Added references for github repo
 
